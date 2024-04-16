@@ -139,7 +139,7 @@ class archived_skills extends \table_sql {
      * @param stdClass $row
      * @return string
      */
-    public function col_timecreated(stdClass $row):string {
+    public function col_timecreated(stdClass $row): string {
         return userdate($row->timecreated);
     }
 
@@ -150,7 +150,7 @@ class archived_skills extends \table_sql {
      * @param stdClass $row
      * @return string
      */
-    public function col_timearchived(stdClass $row):string {
+    public function col_timearchived(stdClass $row): string {
         return userdate($row->timearchived);
     }
 
