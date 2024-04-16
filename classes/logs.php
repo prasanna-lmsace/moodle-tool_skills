@@ -66,10 +66,7 @@ class logs {
         if ($log = $DB->get_record('tool_skills_awardlogs', ['skill' => $skillid, 'userid' => $userid,
         'method' => $method, 'methodid' => $methodid, ])) {
             return $log;
-        } else {
-            throw new moodle_exception('skillawardnotfound', 'tool_skills');
         }
-
         return false;
     }
 
@@ -95,6 +92,7 @@ class logs {
             $record->timecreated = time();
             // Update the existing record log.
             return $DB->update_record('tool_skills_awardlogs', $record);
+
         } else {
             $record = [
                 'skill'       => $skillid,
