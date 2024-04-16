@@ -146,11 +146,11 @@ function tool_skills_myprofile_navigation(tree $tree, $user, $iscurrentuser, $co
                     if (in_array($data->uponcompletion, [\tool_skills\skills::COMPLETIONSETLEVEL,
                         tool_skills\skills::COMPLETIONFORCELEVEL])) {
                         $resultstring = isset($data->levels[$data->level]) ? format_string($data->levels[$data->level]->name) : '';
-                        $resultstring .= '<br>';
 
                     } else if ($data->uponcompletion == \tool_skills\skills::COMPLETIONPOINTS) { // Points.
-                        $resultstring = $data->points . '<br>';
+                        $resultstring = $data->points;
                     }
+                    $resultstring .= '<br>';
                     $pointstr .= html_writer::tag('span', $resultstring, ['class' => 'course-completion-result']);
                 }
 
