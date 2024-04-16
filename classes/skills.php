@@ -252,8 +252,10 @@ class skills {
             \tool_skills\courseskills::remove_skills($this->skillid);
             // Extend the addons remove skills.
             \tool_skills\helper::extend_addons_remove_skills($this->skillid);
-
+            // Remove the user points for the skill.
             $DB->delete_records('tool_skills_userpoints', ['skill' => $this->skillid]);
+            // Remove skills points award logs.
+            $DB->delete_records('tool_skills_awardlogs', ['skill' => $this->skillid]);
 
             return true;
         }
@@ -418,7 +420,7 @@ class skills {
             // Update the new points for this user in db.
             $this->set_userskill_points($userid, $levelpoints);
             // Create a award log for this user point increase.
-            $this->create_user_point_award($skillobj, $userid, $levelpoints);
+            $this->create_user_point_award($skillobj, $userid, $levelpoints - $userskill->points);
         }
     }
 
@@ -542,8 +544,6 @@ class skills {
 
         // Verfiy the current user has capability to manage skills.
         require_capability('tool/skills:manage', context_system::instance());
-
-        // TODO: Try catch.
 
         $record = clone $formdata;
         $record->categories = json_encode($record->categories);

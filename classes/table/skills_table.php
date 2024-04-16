@@ -113,7 +113,7 @@ class skills_table extends \table_sql {
      * @return string
      */
     public function col_description(stdClass $row) : string {
-        return format_text($row->description, FORMAT_HTML, ['overflow' => false]);
+        return format_text($row->description, FORMAT_HTML, ['overflowdiv' => false]);
     }
 
     /**

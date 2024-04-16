@@ -102,7 +102,7 @@ class course_form extends \core_form\dynamic_form {
      * @return bool
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: Validatation of user capability goes here.
+        // ...TODO: Validatation of user capability goes here.
     }
 
     /**

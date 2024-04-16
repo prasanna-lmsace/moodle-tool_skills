@@ -220,21 +220,45 @@ class courseskills extends \tool_skills\allocation_method {
                 // Start the database transaction.
                 $transaction = $DB->start_delegated_transaction();
 
-                switch ($csdata->uponcompletion) {
+                $updateskill = true; // Update the course skills until it doesn't already awarded.
 
-                    case skills::COMPLETIONFORCELEVEL:
-                        $skill->force_level($this, $csdata->level, $userid);
-                        break;
+                if ($record = $DB->get_record('tool_skills_awardlogs', ['userid' => $userid, 'skill' => $csdata->skill,
+                    'methodid' => $csdata->id, 'method' => 'course'])) {
 
-                    case skills::COMPLETIONSETLEVEL:
-                        $skill->moveto_level($this, $csdata->level, $userid);
-                        break;
+                    // Course points user will earned upon the course completion.
+                    $coursepoints = $this->get_points_earned_fromcourse();
+                    $currentpoints = $record->points; // Previous points user earned stored in the log.
+                    $updateskill = false; // No need to update the points until the course skill is updated in its points.
 
-                    case skills::COMPLETIONPOINTS:
-                        $skill->increase_points($this, $csdata->points, $userid);
-                        break;
+                    if ($coursepoints != $currentpoints) {
+
+                        $updateskill = true; // Verified the course skill points updated, then update the user points.
+                        $skillpoint = $skill->get_user_skill($userid)->points;
+                        $skillpoint -= $currentpoints; // Remove the previously awarded course skill points.
+
+                        // Update the skill point for the user.
+                        $skill->set_userskill_points($userid, $skillpoint);
+                    }
+
                 }
 
+                if ($updateskill) {
+
+                    switch ($csdata->uponcompletion) {
+
+                        case skills::COMPLETIONFORCELEVEL:
+                            $skill->force_level($this, $csdata->level, $userid);
+                            break;
+
+                        case skills::COMPLETIONSETLEVEL:
+                            $skill->moveto_level($this, $csdata->level, $userid);
+                            break;
+
+                        case skills::COMPLETIONPOINTS:
+                            $skill->increase_points($this, $csdata->points, $userid);
+                            break;
+                    }
+                }
                 // End the database transaction.
                 $transaction->allow_commit();
             }

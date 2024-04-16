@@ -35,6 +35,7 @@ $string['error:skillsnotfound'] = 'Skill record not found for the given id';
 $string['error:identityexists'] = 'Given skill identity is exists, Please use unique value';
 $string['error:numeric'] = 'Value should be in numbers';
 // ...List page strings.
+$string['subplugintype_skilladdon_plural'] = 'Skill addons';
 $string['skillslist'] = 'List of skills';
 $string['skillslisthead'] = 'Manage skills';
 $string['skillslist_desc'] = 'Create a new skill and edit exsiting skills';
@@ -72,22 +73,21 @@ $string['identitykey'] = 'Key';
 $string['identitykey_help'] = 'Key to identity the skill, this should be unique value';
 $string['learningtime'] = 'Learning time';
 $string['learningtime_help'] = 'Time to spend in the course to complete this skill';
-$string['skillcolor'] = 'Skill color';
-$string['skillcolor_help'] = 'Color of the skill';
 $string['levelscount'] = 'Number of levels';
 $string['updatelevelscount'] = 'Update levels count';
 // ...Levels form fields string.
 $string['skillslevels'] = 'Levels';
 $string['skillslevel'] = 'Level';
 $string['levelscount_help'] = 'Choose the number of levels that exist for this skill. Each level may have a specific number of points required for achievement.';
+$string['baselevelname'] = 'Base level name';
+$string['baselevelpoint'] = 'Base level point';
+$string['baselevelheading'] = 'Base level info';
+$string['baselevelname_help'] = 'This is the name assigned to the base level of the skill. The base level represents the starting point for skill progression.';
+$string['baselevelpoint_help'] = 'The number of points required to achieve the base level of the skill. This indicates the minimum proficiency level for the skill.';
 $string['levelsname'] = 'Level #{$a} name';
 $string['levelsname_help'] = 'Enter the name for level';
 $string['levelspoint'] = 'Level #{$a} point';
 $string['levelspoint_help'] = 'Enter the number of points required to achieve Level. This field is required.';
-$string['levelscolor'] = 'Level #{$a} color';
-$string['levelscolor_help'] = 'Select a color to represent Level. This will override the general skill color for visualization purposes.';
-$string['levelsimage'] = 'Level #{$a} image';
-$string['levelsimage_help'] = 'Upload an image that depicts Level of skill. This will be used for visualization.';
 $string['levelsnohead'] = 'Level #{$a} info';
 // ...course menu strings.
 $string['courseskills'] = 'Set course skills';
