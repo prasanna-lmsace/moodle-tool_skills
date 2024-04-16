@@ -190,7 +190,7 @@ class course_form extends \core_form\dynamic_form {
      * @param bool $status
      * @return void
      */
-    public static function update_status(int $skillid, int $courseid, bool $status) : void {
+    public static function update_status(int $skillid, int $courseid, bool $status): void {
         global $DB;
 
         $record = new stdClass;
